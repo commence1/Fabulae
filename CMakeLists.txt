@@ -5,6 +5,13 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_EXTENSIONS OFF)
 
-add_executable(fabulae src/main.cpp)
+add_executable(${PROJECT_NAME} src/main.cpp
+        src/decode.cpp)
 
-target_include_directories(fabulae PUBLIC ${PROJECT_SOURCE_DIR}/Include)
+target_include_directories(${PROJECT_NAME} PUBLIC ${PROJECT_SOURCE_DIR}/Include)
+
+find_package(SDL3 REQUIRED)
+target_link_libraries(${PROJECT_NAME} PUBLIC SDL3::SDL3)
+
+find_package(Vulkan REQUIRED)
+target_link_libraries(${PROJECT_NAME} PUBLIC Vulkan::Vulkan)
